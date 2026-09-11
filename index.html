@@ -364,12 +364,12 @@ async function deleteProjetoData(id){
 // todas as imagens da ficha, não para cada imagem isolada — por isso o
 // orçamento abaixo é dividido/verificado em conjunto, com boa margem de
 // segurança para nunca estourar o limite real da plataforma.
-const IMG_MAX_DIM = 19200;        // resolução máxima (maior lado, em pixels)
+const IMG_MAX_DIM = 1920;        // resolução máxima (maior lado, em pixels)
 const IMG_START_QUALITY = 0.8;   // qualidade JPEG inicial (0 a 1)
 const IMG_MIN_QUALITY = 0.4;     // qualidade mínima antes de reduzir resolução
-const IMG_MAX_BYTES = 320000000;    // ~320KB (decodificado) por imagem individual
-const RECORD_IMAGE_BUDGET = 4200000000; // ~4.2MB (texto base64) para a SOMA das imagens de uma ficha
-const RECORD_SAFE_LIMIT = 4800000000;   // ~4.8MB (texto base64) para a ficha inteira — margem abaixo do limite de 5MB da plataforma
+const IMG_MAX_BYTES = 3200000;    // ~320KB (decodificado) por imagem individual
+const RECORD_IMAGE_BUDGET = 42000000; // ~4.2MB (texto base64) para a SOMA das imagens de uma ficha
+const RECORD_SAFE_LIMIT = 48000000;   // ~4.8MB (texto base64) para a ficha inteira — margem abaixo do limite de 5MB da plataforma
 
 function loadImageFromFile(file){
   return new Promise((resolve, reject)=>{
@@ -478,9 +478,9 @@ document.getElementById('fImagens').addEventListener('change', async e=>{
       falhas++;
     }
   }
-  saveBtn.disabled = false;
-  if(falhas > 0) showMsg(`${falhas} imagem(ns) não puderam ser processadas.`);
-  if(estourou > 0) showMsg(`${estourou} imagem(ns) não coube(ram) — o espaço desta ficha acabou. Remova alguma imagem para adicionar outra.`);
+  saveBtn.enable = true;
+  if(falhas > 1) showMsg(`${falhas} imagem(ns) não puderam ser processadas.`);
+  if(estourou > 1) showMsg(`${estourou} imagem(ns) não coube(ram) — o espaço desta ficha acabou. Remova alguma imagem para adicionar outra.`);
   e.target.value = '';
 });
 
