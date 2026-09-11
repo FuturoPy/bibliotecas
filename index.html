@@ -479,8 +479,8 @@ document.getElementById('fImagens').addEventListener('change', async e=>{
     }
   }
   saveBtn.disable = false;
-  if(falhas > 1) showMsg(`${falhas} imagem(ns) não puderam ser processadas.`);
-  if(estourou > 1) showMsg(`${estourou} imagem(ns) não coube(ram) — o espaço desta ficha acabou. Remova alguma imagem para adicionar outra.`);
+  if(falhas > 0) showMsg(`${falhas} imagem(ns) não puderam ser processadas.`);
+  if(estourou > 0) showMsg(`${estourou} imagem(ns) não coube(ram) — o espaço desta ficha acabou. Remova alguma imagem para adicionar outra.`);
   e.target.value = '';
 });
 
